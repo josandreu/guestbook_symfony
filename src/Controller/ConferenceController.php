@@ -10,12 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ConferenceController extends AbstractController
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/hello/{name}", name="homepage")
+     * @param string $name
+     * @return Response
      */
-    public function index(Request $request) {
+    public function index(string $name) {
         $greet = '';
-        // ?hello=valorQueObtenemos
-        if ($name = $request->query->get('hello')) {
+        if ($name) {
             $greet = sprintf('<h1>Hello %s!</h1>', htmlspecialchars($name));
         }
         /*return $this->render('conference/index.html.twig', [
@@ -29,8 +30,6 @@ class ConferenceController extends AbstractController
     </body>
 </html>
 EOF
-
-
         );
     }
 }
